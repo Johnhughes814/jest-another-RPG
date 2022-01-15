@@ -57,3 +57,39 @@ test("gets inventory from player or returns false", () => {
 
   expect(player.getInventory()).toEqual(false);
 });
+// test("gets player's health value", () => {
+//   const player = new Player("Dave");
+
+//   expect(player.getHealth()).toEqual(
+//     expect.stringContaining(player.health.toString())
+//   );
+// });
+// test("checks if player is alive or not", () => {
+//   const player = new Player("Dave");
+
+//   expect(player.isAlive()).toBeTruthy();
+
+//   player.health = 0;
+
+//   expect(player.isAlive()).toBeFalsy();
+// });
+// test("subtracts from player's health", () => {
+//   const player = new Player("Dave");
+//   const oldHealth = player.health;
+
+//   Player.prototype.reduceHealth = function (health) {
+//     this.health -= health;
+
+//     if (this.health < 0) {
+//       this.health = 0;
+//     }
+//   };
+
+test("adds a potion to the inventory", () => {
+  const player = new Player("Dave");
+  const oldCount = player.inventory.length;
+
+  Player.prototype.addPotion = function (potion) {
+    this.inventory.push(potion);
+  };
+});

@@ -24,3 +24,23 @@ test("creates a random potion object", () => {
   expect(potion.name.length).toBeGreaterThan(0);
   expect(potion.value).toEqual(expect.any(Number));
 });
+test("uses a potion from inventory", () => {
+  const player = new Player("Dave");
+  player.inventory = [new Potion(), new Potion(), new Potion()];
+  const oldCount = player.inventory.length;
+  Player.prototype.usePotion = function (index) {
+    const potion = this.getInventory().splice(index, 1)[0];
+
+    switch (potion.name) {
+      case "agility":
+        this.agility += potion.value;
+        break;
+      case "health":
+        this.health += potion.value;
+        break;
+      case "strength":
+        this.strength += potion.value;
+        break;
+    }
+  };
+});
